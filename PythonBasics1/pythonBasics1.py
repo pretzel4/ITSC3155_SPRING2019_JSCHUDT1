@@ -40,5 +40,19 @@ def is_power_of(i,j):
 # if s is an empty string return an empty string
 def longest_word(s):
   # YOUR CODE HERE
-
-  return
+  if s == '':
+    return ''
+  words = []
+  wordCache = ""
+  for i in s:
+    if(i == ' '):
+      words.append(wordCache)
+      wordCache = ""
+    else:
+      wordCache = wordCache + i
+  words.append(wordCache)
+  longestWord = ""
+  for i in words:
+    if len(i) >= len(longestWord):
+      longestWord = i
+  return longestWord
