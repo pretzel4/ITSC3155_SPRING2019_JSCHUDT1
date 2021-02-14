@@ -22,8 +22,15 @@ def count_char(s, char):
 # otherwise return False
 def is_power_of(i,j):
   # YOUR CODE HERE
-
-  return
+  curVal = 0
+  index = 0
+  while(index <= abs(j)):
+    curVal = i**index
+    index += 1
+    if(curVal == j or (i == 0 and j == 0)):
+      return True
+  
+  return False
 
 # Part C. longest_word
 # Define a function longest_word(s) that takes a string s
