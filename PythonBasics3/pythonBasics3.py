@@ -14,11 +14,11 @@ import re
 # Note: Be sure to use RegEx and it works for both upper and lower case and for nonletters!
 
 def ends_with_consonant(s):
-
-
-  return
-
-
+  regex = r"[^AEIOUaeiou]$"
+  if(re.search(regex, s)):
+      return True
+  else:
+      return False
 
 
  # Part B. ends_with_number
@@ -27,8 +27,11 @@ def ends_with_consonant(s):
 # (For our purposes, a number is any character that is 0,1,2,3,4,5,6,7,8, or 9.)
 # Note: Be sure to use RegEx!
 def ends_with_number(s):
-
-  return
+  regex = r"\d$"
+  if(re.search(regex, s)):
+    return True
+  else:
+    return False
 
 
 # Part C. binary_multiple_of_6
@@ -37,6 +40,8 @@ def ends_with_number(s):
 # Note: Be sure it returns false if the string is not a valid binary number!
 # Hint: Use regular expressions to match for the pattern of a binary number that is a multiple of 6.
 def binary_multiple_of_6(s):
-
-
-  return
+  regex = r"^([1]+)([0]+)$"
+  if(re.search(regex, s)):
+    return True
+  else:
+    return False
