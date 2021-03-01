@@ -37,6 +37,12 @@ class TestPythonBasicsOne(unittest.TestCase):
 
         # Please add three more test cases following the order above
 
+        self.assertEqual(pythonBasics3.ends_with_number("I like the number 6"), True)
+
+        self.assertEqual(pythonBasics3.ends_with_number("5 rockets spinning in space"), False)
+
+        self.assertEqual(pythonBasics3.ends_with_number("1 is a cool number, but I like 5"), True)
+
 
 #Test case for binary_multiple_of_6
     def test_binary_multiple_of_6(self):
