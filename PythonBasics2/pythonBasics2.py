@@ -6,41 +6,48 @@
 
 
 # Part A. count_threes
-# Define a function count_threes(n) that takes an int and
-# returns the number of multiples of 3 in the range from 0
-# to n (including n).
-
-def count_threes(n):
-  # YOUR CODE HERE'
-  count = 0
-  for i in range(n + 1):
-    if(i % 3 == 0 and i != 0):
-      count+=1
-  return count
-
+# Define a function count_threes(x) that takes a string and returns
+# the most common multiple of three in the string.
+def count_threes(x):
+  dictCount = {}
+  for i in x:
+    val = int(i)
+    if(val % 3 == 0 and val != 0):
+      if(i in dictCount):
+        dictCount[i] += 1
+      else:
+        dictCount[i] = 1
+  return int(max(dictCount, key=dictCount.get))
 
 # Part B. longest_consecutive_repeating_char
 # Define a function longest_consecutive_repeating_char(s) that takes
-# a string s and returns the character that has the longest consecutive repeat.
+# a string s and returns a list of the characters that have the longest consecutive repeat.
+# if there is a tie, it should return a list of characters
 def longest_consecutive_repeating_char(s):
   # YOUR CODE HERE
   numRepeats = 0
   longestRepeat = 0
   longestChar = ''
   lastChar = ''
+  dictCount = {}
   for i in s:
+    if(not i in dictCount):
+      dictCount[i] = 0
     if(i == lastChar):
       numRepeats+=1
     else:
-      if(numRepeats > longestRepeat):
-        longestChar = lastChar
-        longestRepeat = numRepeats
+      if(numRepeats > dictCount[i]):
+        dictCount[lastChar] = numRepeats
       numRepeats = 0
     lastChar = i
-  if(numRepeats > longestRepeat):
-    longestChar = lastChar
-    longestRepeat = numRepeats
-  return longestChar
+  if(numRepeats > dictCount[s[-1:][0]]):
+    dictCount[s[-1:][0]] = numRepeats
+  v = max(dictCount.values())
+  re = []
+  for i in dictCount.keys():
+    if(dictCount[i] == v):
+      re.append(i)
+  return re
 
 
 # Part C. is_palindrome
