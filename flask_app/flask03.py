@@ -4,6 +4,7 @@
 import os                 # os is used to get environment variables IP & PORT
 from flask import Flask   # Flask is the web app that we will customize
 from flask import render_template
+from flask import request
 app = Flask(__name__)     # create an app
 
 @app.route('/notes')
@@ -22,10 +23,17 @@ def get_note(note_id):
     a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
     return render_template('note.html', note=notes[int(note_id)], user=a_user)
 
-@app.route('/notes/new')
+@app.route('/notes/new', methods=['GET', 'POST'])
 def new_note():
+    # create mock user
     a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
-    return render_template('new.html', user=a_user)
+    # check method used for request
+    print('request method is', request.method)
+    if request.method == 'POST':
+        return '<h1> POST method used for this request </h1>'
+    else:
+        return render_template('new.html', user=a_user)
+    
 # @app.route is a decorator. It gives the function "index" special powers.
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
