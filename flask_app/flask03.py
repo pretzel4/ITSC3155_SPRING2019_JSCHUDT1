@@ -9,17 +9,18 @@ app = Flask(__name__)     # create an app
 @app.route('/notes')
 def get_notes():
     notes = {1: {'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
-             2: {'title': 'Second note', 'text':'This is my second note', 'date': '10-2-2020'}}
-
-    return render_template('notes.html', notes=notes)
+             2: {'title': 'Second note', 'text':'This is my second note', 'date': '10-2-2020'},
+             3: {'title': 'Third note', 'text': 'This is my third note', 'date': '10-3-2020'}}
+    a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
+    return render_template('notes.html', notes=notes, user=a_user)
 
 @app.route('/notes/<note_id>')
 def get_note(note_id):
     notes = {1: {'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
              2: {'title': 'Second note', 'text':'This is my second note', 'date': '10-2-2020'},
              3: {'title': 'Third note', 'text': 'This is my third note', 'date': '10-3-2020'}}
-
-    return render_template('note.html', note=notes[int(note_id)])
+    a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
+    return render_template('note.html', note=notes[int(note_id)], user=a_user)
 
 @app.route('/notes/new')
 def new_note():
