@@ -20,12 +20,17 @@ def get_note(note_id):
              3: {'title': 'Third note', 'text': 'This is my third note', 'date': '10-3-2020'}}
 
     return render_template('note.html', note=notes[int(note_id)])
+
+@app.route('/notes/new')
+def new_note():
+    a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
+    return render_template('new.html', user=a_user)
 # @app.route is a decorator. It gives the function "index" special powers.
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
 @app.route('/index')
 def index():
-    a_user = {'name': 'Joshua Schudt', 'email':'mogli@uncc.edu'}
+    a_user = {'name': 'Joshua Schudt', 'email':'jschudt1@uncc.edu'}
 
     return render_template('index.html', user=a_user)
 
