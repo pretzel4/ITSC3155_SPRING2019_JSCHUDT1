@@ -65,12 +65,21 @@ def update_note(note_id):
         # GET request - show new note form to edit note
         # retrieve user from database
         a_user = db.session.query(User).filter_by(email='jschudt1@uncc.edu').one()
-    
+
         # retrieve note from database
         my_note = db.session.query(Note).filter_by(id=note_id).one()
-    
+
         return render_template('new.html', note=my_note, user=a_user)
 
+@app.route('/notes/delete/<note_id>',methods=['POST'])
+def delete_note(note_id):
+    # retrieve note from database
+    my_note = db.session.query(Note).filter_by(id=note_id).one()
+    db.session.delete(my_note)
+    db.session.commit()
+
+    return redirect(url_for('get_notes'))
+    
 @app.route('/notes/new', methods=['GET', 'POST'])
 def new_note():
     # check method used for request
