@@ -138,7 +138,7 @@ def new_note():
             # format date mm/dd/yyyy
             today = today.strftime("%m-%d-%Y")
             # create new note entry
-            newEntry = Note(title, text, today)
+            newEntry = Note(title, text, today, session['user_id'])
 
             db.session.add(newEntry)
 
