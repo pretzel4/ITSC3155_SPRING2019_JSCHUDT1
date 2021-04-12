@@ -99,6 +99,14 @@ def update_note(note_id):
     else:
         return redirect(url_for('login'))
 
+@app.route('/logout')
+def logout():
+    # check if a user is saved in session
+    if session.get('user'):
+        session.clear()
+
+    return redirect(url_for('index'))
+
 @app.route('/notes/delete/<note_id>',methods=['POST'])
 def delete_note(note_id):
     if session.get('user'):
